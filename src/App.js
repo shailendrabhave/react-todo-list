@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import TodoInput from "./components/TodoInput";
 import TodoList from "./components/TodoList";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
 class App extends Component {
   state = {
@@ -14,11 +15,27 @@ class App extends Component {
     item: "",
     editItem: false,
   };
-  handleChange = (event) => {
-    console.log("handleChange");
+  handleChange = (e) => {
+    this.setState({
+      item: e.target.value,
+    });
   };
-  handleSubmit = (event) => {
-    console.log("handleSubmit");
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const newItem = {
+      id: this.state.id,
+      title: this.state.item,
+    };
+    const updatedItems = [...this.state.items, newItem];
+    this.setState(
+      {
+        items: updatedItems,
+        item: "",
+        id: uuidv4(),
+        editItem: false,
+      },
+      () => console.log(this.state)
+    );
   };
   clearList = () => {
     console.log("clearList");
