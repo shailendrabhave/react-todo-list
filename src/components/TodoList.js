@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import ToDoItem from "./TodoItem";
-
+import TodoItem from "./TodoItem";
 export default class TodoList extends Component {
   render() {
     const { items, clearList, handleDelete, handleEdit } = this.props;
@@ -9,12 +8,12 @@ export default class TodoList extends Component {
         <h3 className="text-capitalize text-center">todo list</h3>
         {items.map((item) => {
           return (
-            <ToDoItem
+            <TodoItem
               key={item.id}
               title={item.title}
               handleDelete={() => handleDelete(item.id)}
               handleEdit={() => handleEdit(item.id)}
-            ></ToDoItem>
+            />
           );
         })}
         <button
@@ -22,7 +21,7 @@ export default class TodoList extends Component {
           className="btn btn-danger btn-block text-uppercase mt-5"
           onClick={clearList}
         >
-          Clear List
+          clear list
         </button>
       </ul>
     );
